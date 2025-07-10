@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>G◯◯gle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+/* CSSちらかってるなーって思った？整理しといて。 */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #fff;
+  padding: 2rem;
+  color: #202124;
+  max-width: 700px;
+  margin: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 100vh;
+  box-sizing: border-box;
+}
+/* テキストエディタでhtml(css)書いてるとなんか散らかるんだよね */
+
+    h1 {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+.search-bar {
+  max-width: 800px;
+  margin: 0 0 2rem 1.5rem;
+  display: flex;
+  align-items: center;
+  border: 1px solid #dfe1e5;
+  border-radius: 24px;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 1px 6px rgba(32,33,36,0.28);
+}
+
+
+.search-bar input {
+  flex: 1;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+  padding: 0.3rem 0.5rem;
+}
+
+.search-icon, .mic-icon {
+  font-size: 1.2rem;
+  margin-left: 0.6rem;
+  color: #5f6368;
+  cursor: pointer;
+}
+.result {
+  max-width: 800px;
+  margin: 0 0 2rem 1.5rem; /* ← 左寄せに変更 */
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 1.5rem;
+  cursor: pointer;
+}
+
+    .title a {
+      color: #1a0dab;
+      font-size: 1.1rem;
+      text-decoration: underline;
+    }
+
+    .url {
+      color: #006621;
+      font-size: 0.9rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .description {
+      font-size: 0.95rem;
+      margin-top: 0.3rem;
+    }
+
+    .modal {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .modal-content {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      max-width: 500px;
+      width: 90%;
+      position: relative;
+    }
+
+    .modal-content h2 {
+      margin-top: 0;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .modal a {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #1a0dab;
+      text-decoration: underline;
+    }
+
+    .ai {
+      font-size: 0.85rem;
+      color: #555;
+      margin-top: 0.4rem;
+    }
+.nav-tabs {
+  max-width: 800px;
+  margin: 0 0 1rem 1.5rem;
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.9rem;
+  color: #5f6368;
+  border-bottom: 1px solid #dadce0;
+}
+
+
+.nav-tabs .tab {
+  padding: 0.7rem 0;
+  cursor: pointer;
+  position: relative;
+  white-space: nowrap;
+}
+
+.nav-tabs .tab.selected {
+  color: #1a73e8;
+  font-weight: 500;
+}
+
+.nav-tabs .tab.selected::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: #1a73e8;
+}
+
+  </style>
+</head>
+<body>
+
+  <h1>📚 G◯◯gle</h1>
+<div class="search-bar">
+  <span class="search-icon">🔍</span>
+  <input type="text" placeholder="プロジェクトを検索..." />
+  <span class="mic-icon">🎤</span>
+</div>
+<div class="nav-tabs">
+  <div class="tab selected">すべて</div>
+  <div class="tab">画像</div>
+  <div class="tab">動画</div>
+  <div class="tab">ショッピング</div>
+  <div class="tab">ショート動画</div>
+  <div class="tab">地図</div>
+  <div class="tab">ニュース</div>
+  <div class="tab">もっと見る</div>
+</div>
+  <br>
+  <div class="result" data-title="Googleとは無関係です。" data-desc="Googleとは無関係です。" data-links="">
+    <div class="url">⚠️　Googleとは無関係です</div>
+    <div class="title"><a href="#">Googleとは無関係です。</a></div>
+    <div class="description">Googleとは無関係です。</div>
+    <div class="ai">Googleオマージュ：100%</div>
+  </div>
+
+  <div class="result" data-title="ターゲット1900アプリ" data-desc="現在は非公開の単語学習アプリ" data-links="">
+    <div class="url">🔒 非公開</div>
+    <div class="title"><a href="#">ターゲット1900アプリ</a></div>
+    <div class="description">※現在は非公開です。</div>
+    <div class="ai">AI依存度：10%</div>
+  </div>
+
+  <div class="result" data-title="土壌汚染に関する記事" data-desc="保健でやった課題" data-links="">
+    <div class="url">🌍 <a href="https://kouryou-118103.github.io/dojo/" target="_blank">kouryou-118103.github.io/dojo</a></div>
+    <div class="title"><a href="https://kouryou-118103.github.io/dojo/" target="_blank">土壌汚染</a></div>
+    <div class="description">旧リンク（2025年7月8日まで）: <a href="https://dojo-osen.glitch.me/%E3%82%8F%E3%81%8A%E5%9C%9F%E5%A3%8C%E6%B1%9A%E6%9F%93.html" target="_blank">glitch.me</a></div>
+    <div class="ai">AI依存度：30%</div>
+  </div>
+
+  <div class="result" data-title="不定詞４択クイズ" data-desc="論表に使える不定詞のテスト" data-links="">
+    <div class="url">🧠 <a href="https://kouryou-118103.github.io/maji-ringo/" target="_blank">kouryou-118103.github.io/maji-ringo</a></div>
+    <div class="title"><a href="https://kouryou-118103.github.io/maji-ringo/" target="_blank">不定詞4択クイズ</a></div>
+    <div class="description">旧リンク（2025年7月8日まで）: <a href="https://maji-ringo.glitch.me/" target="_blank">glitch.me</a></div>
+    <div class="ai">AI依存度：95%</div>
+  </div>
+
+  <div class="result" data-title="英コミュ＆公共4択クイズ" data-desc="2年生の最後の方のやつ" data-links="">
+    <div class="url">🗣️ <a href="https://kouryou-118103.github.io/maji-tomato/" target="_blank">kouryou-118103.github.io/maji-tomato</a></div>
+    <div class="title"><a href="https://kouryou-118103.github.io/maji-tomato/" target="_blank">英コミュ＆公共4択クイズ</a></div>
+    <div class="description">旧リンク（2025年7月8日まで）: <a href="https://maji-tomato.glitch.me/" target="_blank">glitch.me</a></div>
+    <div class="ai">AI依存度：95%</div>
+  </div>
+
+  <div class="result" data-title="グラフ補助アプリ（ポチグラフ）" data-desc="CSVをアップロードして簡単に（自称）グラフが作れるアプリ" data-links="">
+    <div class="url">📊 <a href="https://kouryou-118103.github.io/poti-graph/" target="_blank">kouryou-118103.github.io/poti-graph</a></div>
+    <div class="title"><a href="https://kouryou-118103.github.io/poti-graph/" target="_blank">グラフ作成補助アプリ（ポチグラフ）</a></div>
+    <div class="description">旧リンク（2025年7月8日まで）: <a href="https://poti-graph.glitch.me/" target="_blank">glitch.me</a></div>
+    <div class="ai">AI依存度：70%</div>
+  </div>
+
+  <div class="result" data-title="仮定法4択クイズ" data-desc="論表の仮定法を覚えるクイズ" data-links="">
+    <div class="url">🌀 <a href="https://kouryou-118103.github.io/maji-mikan/" target="_blank">kouryou-118103.github.io/maji-mikan</a></div>
+    <div class="title"><a href="https://kouryou-118103.github.io/maji-mikan/" target="_blank">仮定法4択クイズ</a></div>
+    <div class="description">旧リンク（2025年7月8日まで）: <a href="https://maji-mikan.glitch.me/" target="_blank">glitch.me</a></div>
+    <div class="ai">AI依存度：100%</div>
+  </div>
+
+  <div class="modal" id="popup">
+    <div class="modal-content">
+      <span class="close-btn" onclick="document.getElementById('popup').style.display='none'">&times;</span>
+      <h2 id="popup-title"></h2>
+      <p id="popup-desc"></p>
+      <div id="popup-links"></div>
+    </div>
+  </div>
+
+  <script>
+    const results = document.querySelectorAll('.result');
+    const modal = document.getElementById('popup');
+    const title = document.getElementById('popup-title');
+    const desc = document.getElementById('popup-desc');
+    const links = document.getElementById('popup-links');
+
+    results.forEach(result => {
+      result.addEventListener('click', () => {
+        title.textContent = result.dataset.title;
+        desc.textContent = result.dataset.desc;
+        links.innerHTML = '';
+
+        const linkData = JSON.parse(result.dataset.links || '[]');
+        linkData.forEach(link => {
+          const a = document.createElement('a');
+          a.href = link.url;
+          a.textContent = link.label + ' → ' + link.url;
+          a.target = '_blank';
+          links.appendChild(a);
+        });
+
+        modal.style.display = 'flex';
+      });
+    });
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    modal.style.display = "none";
+  }
+});
+
+const input = document.querySelector(".search-bar input");
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    const query = input.value.trim();
+    if (query) {
+      const url = "https://www.google.com/search?q=" + encodeURIComponent(query);
+      window.location.href = url;
+    }
+  }
+});
+
+  </script>
+</body>
+</html>
